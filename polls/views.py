@@ -1,8 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Question
+
 
 def index(request):
-    return HttpResponse("Olá Mundo! Esta é a página inicial do aplicativo.")
+    latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    output = ", ".join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
 
-def sobre(request):
-    return HttpResponse("Olá! Esta é a página sobre do meu site.")
+def detail(request, question_id):
+    return HttpResponse(f'Esta é a pergunta de número {question_id}')
+
+
+def results(request, question_id):
+    response = f'Resultados da pergunta de número {question_id}'
+    return HttpResponse(response % question_id)
+
+
+def vote(request, question_id):
+    return HttpResponse(f'Você vai votar na pergunta de número {question_id}')
