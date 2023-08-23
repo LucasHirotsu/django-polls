@@ -14,4 +14,7 @@ urlpatterns = [
     
     # ex: /polls/5/vote/
     path("<int:question_id>/votar/", views.vote, name="vote"),
+
+    # página de cadastro de nova enquete
+    path('cadastrar', views.QuestionCreateView.as_view(), name="question-create"),
 ]
