@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Question
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, ListView, DetailView, DeleteView
+from django.urls import reverse_lazy
 
 @login_required # controle de acesso usando o decorador de função
 def sobre(request):
@@ -10,7 +12,7 @@ def sobre(request):
 
 # controle de acesso usando o mecanismo de herança que torna o login obrigatório
 class QuestionDeleteView(LoginRequiredMixin, DeleteView):
-model = Question
+    model = Question
 
 def index(request):
     latest_question_list = Question.objects.order_by("-pub_date")[:5]
@@ -28,9 +30,6 @@ def results(request, question_id):
 
 def vote(request, question_id):
     return HttpResponse(f"Você vai votar na pergunta de número {question_id}")
-
-from django.views.generic import CreateView, ListView, DetailView, DeleteView
-from django.urls import reverse_lazy
 
 class QuestionCreateView(CreateView):
     model = Question
