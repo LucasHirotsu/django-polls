@@ -1,5 +1,3 @@
-# Create your views here.
-
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from .models import Question
@@ -58,5 +56,10 @@ class QuestionDeleteView(LoginRequiredMixin, DeleteView):
 
 class QuestionUpdateView(UpdateView):
     model = Question 
+    template_name = 'polls/question_form.html'
     success_url = reverse_lazy('question-list')
     fields = ('question-text',)
+    success_message = 'Enquete atualizada com sucesso!'
+
+def get_context_data(self, **kwargs):
+    context = super(QuestionUpdateView, self).get_context_data()

@@ -12,13 +12,16 @@
     <body>
         <header>
             <img src="{% static 'polls/img/a.png' %}" alt="">
-            <h1>Kauan quer saber...</h1>
             {% if not user.is_authenticated %}
-            <a class="p-2 text-dark" href="{% url 'signup' %}">Cadastrar</a>
-            <a class="p-2 text-dark" href="{% url 'login' %}">Acessar</a>
+            <div class="account">
+                <a class="p-2 text-dark" href="{% url 'signup' %}">Cadastrar</a>
+                <a class="p-2 text-dark" href="{% url 'login' %}">Acessar</a>
+            </div>
             {% else %}
-            <a class="p-2 text-dark" href="{% url 'account_edit' pk=user.pk %}">Minha conta</a>
-            <a class="p-2 text-dark" href="{% url 'logout' %}">Sair</a>
+            <div class="account">
+                <a class="p-2 text-dark" href="{% url 'account_edit' pk=user.pk %}">Minha conta</a>
+                <a class="p-2 text-dark" href="{% url 'logout' %}">Sair</a>
+            </div>
             {% endif %}
         </header>
 
