@@ -26,6 +26,10 @@
         </header>
 
         <main>
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+
             {% block content %}{% endblock content %}
         </main>
 

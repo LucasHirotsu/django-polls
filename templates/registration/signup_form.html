@@ -1,18 +1,12 @@
-{% extends 'polls/base.html' %} 
-{% block content %} 
+{% extends "polls/base.html" %}
+{% block content %}
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Registro de Usuário</h5>
-    </div>
-    <div class="card-body">
+
+    <h1>Registro de usuário</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Enviar</button>
-        </form>
-    </div>
-</div>
-{% endblock %} 
-
+            <button type="submit">Enviar</button>
+        </form>    
+{% endblock content %}
     
